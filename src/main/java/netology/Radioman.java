@@ -1,5 +1,12 @@
 package netology;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class Radioman {
     private int currentRadioStation;
     private int firstRadioStation = 0;
@@ -7,55 +14,6 @@ public class Radioman {
     private int maxVolume = 100;
     private int minVolume = 0;
     private int currentVolume;
-
-    public int getCurrentRadioStation() {
-        return currentRadioStation;
-    }
-
-    public void setCurrentRadioStation(int currentRadioStation) {
-        this.currentRadioStation = currentRadioStation;
-    }
-
-    public int getFirstRadioStation() {
-        return firstRadioStation;
-    }
-
-    public void setFirstRadioStation(int firstRadioStation) {
-        this.firstRadioStation = firstRadioStation;
-    }
-
-    public int getLastRadioStation() {
-        return lastRadioStation;
-    }
-
-    public void setLastRadioStation(int lastRadioStation) {
-        this.lastRadioStation = lastRadioStation;
-    }
-
-    public int getMaxVolume() {
-        return maxVolume;
-    }
-
-    public void setMaxVolume(int maxVolume) {
-        this.maxVolume = maxVolume;
-    }
-
-    public int getMinVolume() {
-        return minVolume;
-    }
-
-    public void setMinVolume(int minVolume) {
-        this.minVolume = minVolume;
-    }
-
-    public int getCurrentVolume() {
-        return currentVolume;
-    }
-
-    public void setCurrentVolume(int currentVolume) {
-        this.currentVolume = currentVolume;
-    }
-
 
     public void turnNextRadioStation() {
         if (currentRadioStation == lastRadioStation) {
