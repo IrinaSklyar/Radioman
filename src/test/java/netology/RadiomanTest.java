@@ -20,9 +20,9 @@ class RadiomanTest {
     @Test
     void turnNextIfCurrentIsCloseToLastStation() {
         //проверка граничных значений
-        radio.setCurrentRadioStation(8);
+        radio.setCurrentRadioStation(9);
         radio.turnNextRadioStation();
-        int expected = 9;
+        int expected = 10;
         int actual = radio.getCurrentRadioStation();
         assertEquals(expected, actual);
     }
@@ -30,9 +30,7 @@ class RadiomanTest {
     @Test
     void turnNextIfCurrentIsLastStation() {
         // проверка выхода за границу валидных значений
-        radio.setLastRadioStation(9);
-        radio.setFirstRadioStation(0);
-        radio.setCurrentRadioStation(9);
+        radio.setCurrentRadioStation(10);
         radio.turnNextRadioStation();
         int expected = 0;
         int actual = radio.getCurrentRadioStation();
@@ -42,11 +40,9 @@ class RadiomanTest {
     @Test
     void turnPreviousRadioStation() {
         // проверка валидных значений
-        radio.setLastRadioStation(9);
-        radio.setFirstRadioStation(0);
-        radio.setCurrentRadioStation(7);
+        radio.setCurrentRadioStation(6);
         radio.turnPreviousRadioStation();
-        int expected = (6);
+        int expected = (5);
         int actual = radio.getCurrentRadioStation();
         assertEquals(expected, actual);
     }
@@ -54,8 +50,6 @@ class RadiomanTest {
     @Test
     void turnPrevIfCurrentIsCloseToLast() {
         // проверка граничных значений
-        radio.setLastRadioStation(9);
-        radio.setFirstRadioStation(0);
         radio.setCurrentRadioStation(1);
         radio.turnPreviousRadioStation();
         int expected = 0;
@@ -66,11 +60,9 @@ class RadiomanTest {
     @Test
     void turnPrevIfCurrentIsLast() {
         // проверка выхода за границу валидных значений
-        radio.setLastRadioStation(9);
-        radio.setFirstRadioStation(0);
         radio.setCurrentRadioStation(0);
         radio.turnPreviousRadioStation();
-        int expected = 9;
+        int expected = 10;
         int actual = radio.getCurrentRadioStation();
         assertEquals(expected, actual);
     }
@@ -78,11 +70,9 @@ class RadiomanTest {
     @Test
     void turnUpVolume() {
         // проверка валидных значений
-        radio.setMaxVolume(10);
-        radio.setMinVolume(0);
-        radio.setCurrentVolume(5);
+        radio.setCurrentVolume(55);
         radio.turnUpVolume();
-        int expected = 6;
+        int expected = 56;
         int actual = radio.getCurrentVolume();
         assertEquals(expected, actual);
     }
@@ -90,11 +80,9 @@ class RadiomanTest {
     @Test
     void turnUpVolumeIsMax() {
         // проверка выхода за границу валидных значений
-        radio.setMaxVolume(10);
-        radio.setMinVolume(0);
-        radio.setCurrentVolume(10);
+        radio.setCurrentVolume(100);
         radio.turnUpVolume();
-        int expected = 10;
+        int expected = 100;
         int actual = radio.getCurrentVolume();
         assertEquals(expected, actual);
     }
@@ -102,8 +90,6 @@ class RadiomanTest {
     @Test
     void turnDownVolume() {
         // проверка валидных значений
-        radio.setMaxVolume(10);
-        radio.setMinVolume(0);
         radio.setCurrentVolume(4);
         radio.turnDownVolume();
         int expected = 3;
@@ -125,8 +111,6 @@ class RadiomanTest {
     void setRadioStationValidValues() {
         // проверка валидных значений
         radio.chooseCurrentRadioStation(5);
-        radio.setLastRadioStation(9);
-        radio.setFirstRadioStation(0);
         int expected = 5;
         int actual = radio.getCurrentRadioStation();
         assertEquals(expected, actual);
@@ -135,13 +119,27 @@ class RadiomanTest {
     @Test
     void setRadioStationIsOutOfValue() {
         // проверка невалидных значений
+        radio.chooseCurrentRadioStation(15);
+        int expected = 0;
+        int actual = radio.getCurrentRadioStation();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void ifRadioStationIsNextToBoarderFigures() {
+        // проверка граничных значений
+        radio.chooseCurrentRadioStation(10);
+        int expected = 10;
+        int actual = radio.getCurrentRadioStation();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void ifRadioStationIsLowThanZero() {
+        // проверка отрицательных значений
         radio.chooseCurrentRadioStation(-5);
-        radio.setLastRadioStation(9);
-        radio.setFirstRadioStation(0);
         int expected = 0;
         int actual = radio.getCurrentRadioStation();
         assertEquals(expected, actual);
     }
 }
-
-

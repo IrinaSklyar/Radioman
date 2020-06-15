@@ -3,8 +3,8 @@ package netology;
 public class Radioman {
     private int currentRadioStation;
     private int firstRadioStation = 0;
-    private int lastRadioStation = 9;
-    private int maxVolume = 10;
+    private int lastRadioStation = 10;
+    private int maxVolume = 100;
     private int minVolume = 0;
     private int currentVolume;
 
@@ -55,6 +55,7 @@ public class Radioman {
     public void setCurrentVolume(int currentVolume) {
         this.currentVolume = currentVolume;
     }
+
 
     public void turnNextRadioStation() {
         if (currentRadioStation == lastRadioStation) {
